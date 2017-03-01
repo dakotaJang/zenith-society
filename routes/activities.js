@@ -95,8 +95,11 @@ router.post("/edit", (req, res, next) => {
     var activity = req.body;
     var changedActivity = {};
 
-    if (student.Description) {
+    if (activity.Description) {
         changedActivity.Description = activity.Description;
+    }
+    if (activity.CreateDate) {
+        changedActivity.CreateDate = activity.CreateDate;
     }
 
     if (!changedActivity) {
