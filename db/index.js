@@ -1,7 +1,6 @@
 (function(database){
     var mongojs = require("mongojs");
-    // const MONGO_URL = "institutedb";
-    // const MONGO_URL = "mongodb://bcit:Mang0@ds151108.mlab.com:51108/institutedb";
+    const MONGO_URL = "mongodb://dj:123456@ds113680.mlab.com:13680/activitydb";
     const COLLECTION = "activities"
 
     var db = null;
