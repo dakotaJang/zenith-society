@@ -78,9 +78,8 @@ router.post("/delete", (req, res, next) => {
     });
 });
 
-// display edit activity form
+// display edit activity form (UI)
 router.get("/edit/:id", (req, res, next) => {
-    // TODO: fix code below
     db.activities.findOne({_id: mongojs.ObjectId(req.params.id)},
         function(err,data){
             if(err){
@@ -91,10 +90,29 @@ router.get("/edit/:id", (req, res, next) => {
     )
 });
 
-// edit a activity
-router.post("/edit", (req, res, next) => {
+//edit an activity (action)
+router.post("/edit", (req, res, next) => { 
     var activity = req.body;
-    // TODO: implement edit activity
+    var changedActivity = {};
+
+    if (student.Description) {
+        changedActivity.Description = activity.Description;
+    }
+
+    if (!changedActivity) {
+        res.status(400);
+        res.json( {error: "Bad data"});
+    } else {
+        db.activities.update(
+            {_id: mongojs.ObjectId(activity._id)},
+            changedActivity, {}, (err,data) => {
+                if (err) {
+                    res.send(err);
+                }
+                res.redirect("/activities/list");
+            }
+        );
+    }
 });
 
 module.exports = router;
