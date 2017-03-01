@@ -13,13 +13,14 @@ myMongo.getDb((err,mydb)=>{
     }
 });
 
-// list all the students
+// list all the activities
 router.get("/list", (req, res, next) => {
     // TODO: fix code below
-    db.activies.find( (err,data) => {
+    db.activities.find( (err,data) => {
         if (err) {
             res.send(err);
         }
+        console.log(data)
         res.render("index", {title: "List Activities", data:data});
     });
 });
@@ -30,15 +31,14 @@ router.get("/create", (req, res, next) => {
     res.render("create", {title: "Add an activity"});
 });
 
-// create a student
+// create an activity
 router.post("/create", (req, res, next) => {
     // TODO: fix code below
     var activity = req.body;
-    if (!activity.StartDate) {
-        activity.StartDate = new Date();
+    if (!activity.CreateDate) {
+        activity.CreateDate = new Date();
     }
-
-    if (!activity.FirstName || !activity.LastName || !activity.School) {
+    if (!activity.Description) {
         res.status(400);
         res.json(
             {error: "Bad data, could not insert in database"}
@@ -48,12 +48,12 @@ router.post("/create", (req, res, next) => {
             if (err) {
                 res.send(err)
             }
-            res.redirect("/activies/list");
+            res.redirect("/activities/list");
         });
     }
 });
 
-// display delete student page
+// display delete activity page
 router.get("/delete/:id", (req, res, next) => {
     // TODO: fix code below
     db.activities.findOne({_id: mongojs.ObjectId(req.params.id)},
@@ -66,15 +66,15 @@ router.get("/delete/:id", (req, res, next) => {
     )
 });
 
-// delete a student
+// delete a activity
 router.post("/delete", (req, res, next) => {
     // TODO: fix code below
-    var student = req.body;
-    db.students.remove( {_id: mongojs.ObjectId(student._id)}, (err,data) => {
+    var activity = req.body;
+    db.activities.remove( {_id: mongojs.ObjectId(activity._id)}, (err,data) => {
         if (err) {
             res.send(err);
         }
-        res.redirect("/activies/list");
+        res.redirect("/activities/list");
     });
 });
 
@@ -86,7 +86,7 @@ router.get("/edit/:id", (req, res, next) => {
             if(err){
                 res.send(err);
             }
-            res.render("edit",{title:"Delete a student", data:data})
+            res.render("edit",{title:"Edit an activity", data:data})
         }
     )
 });
