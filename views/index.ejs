@@ -1,3 +1,23 @@
 <%- layout('layout.ejs') %>
-<h1><%- title %></h1>
-<p>This is from <%- title %></p>
+<div>
+    <h3><%- title %></h3>
+    <p><a href="/activities/create" class="btn btn-success">Add a student</a></p>
+    <table class="table table-striped table-condensed">
+        <tr>
+            <th>Description</th>
+            <th>Create Date</th>
+            <th></th>
+        </tr>
+        
+        <% for(var i=0;i<data.length;i++){ %>
+        <tr>
+            <td><%= data[i].Description %></td>
+            <td><%= data[i].CreateDate %></td>
+            <td>
+                <a href="/activities/edit/<%= data[i]._id %>" class="btn btn-primary btn-small">Edit</a>
+                <a href="/activities/delete/<%= data[i]._id %>" class="btn btn-danger btn-small">Delete</a>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+</div>
