@@ -14,41 +14,41 @@ myMongo.getDb((err,mydb)=>{
 });
 
 // list all the students
-router.get("/", (req, res, next) => {
+router.get("/list", (req, res, next) => {
     // TODO: fix code below
     db.activies.find( (err,data) => {
         if (err) {
             res.send(err);
         }
-        res.render("list", {title: "List Activities", data:data});
+        res.render("index", {title: "List Activities", data:data});
     });
 });
 
 // display a create form 
 router.get("/create", (req, res, next) => {
     // TODO: fix code below
-    res.render("create", {title: "Add a Student"});
+    res.render("create", {title: "Add an activity"});
 });
 
 // create a student
 router.post("/create", (req, res, next) => {
     // TODO: fix code below
-    var student = req.body;
-    if (!student.StartDate) {
-        student.StartDate = new Date();
+    var activity = req.body;
+    if (!activity.StartDate) {
+        activity.StartDate = new Date();
     }
 
-    if (!student.FirstName || !student.LastName || !student.School) {
+    if (!activity.FirstName || !activity.LastName || !activity.School) {
         res.status(400);
         res.json(
             {error: "Bad data, could not insert in database"}
         );
     } else {
-        db.students.save(student, (err, data) => {
+        db.activities.save(activity, (err, data) => {
             if (err) {
                 res.send(err)
             }
-            res.redirect("/forms/list");
+            res.redirect("/activies/list");
         });
     }
 });
@@ -56,12 +56,12 @@ router.post("/create", (req, res, next) => {
 // display delete student page
 router.get("/delete/:id", (req, res, next) => {
     // TODO: fix code below
-    db.students.findOne({_id: mongojs.ObjectId(req.params.id)},
+    db.activities.findOne({_id: mongojs.ObjectId(req.params.id)},
         function(err,data){
             if(err){
                 res.send(err);
             }
-            res.render("delete",{title:"Delete a student", data:data})
+            res.render("delete",{title:"Delete an activity", data:data})
         }
     )
 });
@@ -74,7 +74,7 @@ router.post("/delete", (req, res, next) => {
         if (err) {
             res.send(err);
         }
-        res.redirect("/forms/list");
+        res.redirect("/activies/list");
     });
 });
 
