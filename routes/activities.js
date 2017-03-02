@@ -15,7 +15,6 @@ myMongo.getDb((err,mydb)=>{
 
 // list all the activities
 router.get("/list", (req, res, next) => {
-    // TODO: fix code below
     db.activities.find( (err,data) => {
         if (err) {
             res.send(err);
@@ -27,7 +26,6 @@ router.get("/list", (req, res, next) => {
 
 // display a create form 
 router.get("/create", (req, res, next) => {
-    // TODO: fix code below
     res.render("create", {title: "Add an activity"});
 });
 
@@ -55,7 +53,6 @@ router.post("/create", (req, res, next) => {
 
 // display delete activity page
 router.get("/delete/:id", (req, res, next) => {
-    // TODO: fix code below
     db.activities.findOne({_id: mongojs.ObjectId(req.params.id)},
         function(err,data){
             if(err){
@@ -68,7 +65,6 @@ router.get("/delete/:id", (req, res, next) => {
 
 // delete a activity
 router.post("/delete", (req, res, next) => {
-    // TODO: fix code below
     var activity = req.body;
     db.activities.remove( {_id: mongojs.ObjectId(activity._id)}, (err,data) => {
         if (err) {
