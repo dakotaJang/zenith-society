@@ -35,8 +35,8 @@ router.get("/create", (req, res, next) => {
 router.post("/create", (req, res, next) => {
     // TODO: fix code below
     var activity = req.body;
-    if (!activity.CreateDate) {
-        activity.CreateDate = new Date();
+    if (!activity.CreationDate) {
+        activity.CreationDate = new Date();
     }
     if (!activity.Description) {
         res.status(400);
@@ -98,8 +98,8 @@ router.post("/edit", (req, res, next) => {
     if (activity.Description) {
         changedActivity.Description = activity.Description;
     }
-    if (activity.CreateDate) {
-        changedActivity.CreateDate = activity.CreateDate;
+    if (activity.CreationDate) {
+        changedActivity.CreationDate = activity.CreationDate;
     }
 
     if (!changedActivity) {
