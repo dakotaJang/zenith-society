@@ -7,6 +7,10 @@
                 <label for="Description">Description</label>
                 <input name="Description" value="<%- data.Description %>" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="CreationDate">Description</label>
+                <input name="CreationDate" value="<%- data.CreationDate %>" class="form-control" disabled>
+            </div>
             <input type="submit" value="Update" class="btn btn-success">
             <input type="hidden" name="_id" value="<%= data._id %>">
             <input type="hidden" name="CreationDate" value="<%- data.CreationDate %>" class="form-control">

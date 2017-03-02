@@ -13,27 +13,23 @@ myMongo.getDb((err,mydb)=>{
     }
 });
 
-// list all the activities
+// list all the activities (UI)
 router.get("/list", (req, res, next) => {
-    // TODO: fix code below
     db.activities.find( (err,data) => {
         if (err) {
             res.send(err);
         }
-        console.log(data)
         res.render("index", {title: "List Activities", data:data});
     });
 });
 
-// display a create form 
+// display a create form (UI)
 router.get("/create", (req, res, next) => {
-    // TODO: fix code below
     res.render("create", {title: "Add an activity"});
 });
 
-// create an activity
+// create an activity (action)
 router.post("/create", (req, res, next) => {
-    // TODO: fix code below
     var activity = req.body;
     if (!activity.CreationDate) {
         activity.CreationDate = new Date();
@@ -53,7 +49,7 @@ router.post("/create", (req, res, next) => {
     }
 });
 
-// display delete activity page
+// display delete activity page (UI)
 router.get("/delete/:id", (req, res, next) => {
     // TODO: fix code below
     db.activities.findOne({_id: mongojs.ObjectId(req.params.id)},
@@ -66,9 +62,8 @@ router.get("/delete/:id", (req, res, next) => {
     )
 });
 
-// delete a activity
+// delete a activity (action)
 router.post("/delete", (req, res, next) => {
-    // TODO: fix code below
     var activity = req.body;
     db.activities.remove( {_id: mongojs.ObjectId(activity._id)}, (err,data) => {
         if (err) {
