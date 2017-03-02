@@ -5,14 +5,14 @@
     <table class="table table-striped table-condensed">
         <tr>
             <th>Description</th>
-            <th>Create Date</th>
+            <th>Creation Date</th>
             <th></th>
         </tr>
         
         <% for(var i=0;i<data.length;i++){ %>
         <tr>
             <td><%= data[i].Description %></td>
-            <td><%= data[i].CreateDate %></td>
+            <td><%= data[i].CreationDate %></td>
             <td>
                 <a href="/activities/edit/<%= data[i]._id %>" class="btn btn-primary btn-small">Edit</a>
                 <a href="/activities/delete/<%= data[i]._id %>" class="btn btn-danger btn-small">Delete</a>
