@@ -7,7 +7,7 @@ if(authentication){
 
     var creationDate = new Date();
     // var creationDate = new Date("2017-03-01T08:30:00.00Z");
-    db.activities.insertMany(
+    db.activities.insert(
     [{
         "Description":"Senior’s  Golf Tournament",
         "CreationDate": creationDate
