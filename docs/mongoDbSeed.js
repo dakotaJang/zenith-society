@@ -2,6 +2,8 @@ var connection = new Mongo( "ds113580.mlab.com:13580" );
 var db = connection.getDB( "activitydb" );
 db.auth( "user", "123456" );
 
+db.activities.remove({});
+print( "activities collection has been reset." );
 db.activities.insert(
 [{
     "Description":"Senior’s  Golf Tournament",
@@ -57,3 +59,4 @@ db.activities.insert(
     "CreationDate": {"$date": "2017-03-01T08:30:00.000Z"}
  }
 ]);
+print( "activities collection has been repopulated." );
