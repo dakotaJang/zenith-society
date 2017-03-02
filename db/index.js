@@ -1,6 +1,6 @@
 (function(database){
     var mongojs = require("mongojs");
-    const MONGO_URL = "mongodb://dj:123456@ds113680.mlab.com:13680/activitydb";
+    const MONGO_URL = "mongodb://user:123456@ds113580.mlab.com:13580/zenithdb";
     const COLLECTION = "activities"
 
     var db = null;
