@@ -1,0 +1,16 @@
+<%- layout('layout') %>
+<div>
+    <h3><%- title %></h3>
+    <div class="row">
+        <form method="post" action="/activities/create"  class="col-xs-6">
+            <% var value = ""; if(typeof(data) != "undefined"){ value = data.Description %>
+                <p class="text-danger">Activity already exists!</p>
+            <%} %>
+            <div class="form-group">
+                <input name="Description" placeholder="Description" class="form-control" value="<%= value %>" >
+            </div>
+            <input type="submit" value="Add" class="btn btn-success">
+            <a href="/activities/list" class="btn btn-default">Cancel</a>
+        </form>
+    </div>
+</div>
