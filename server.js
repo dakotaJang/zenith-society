@@ -8,6 +8,10 @@ var activities = require("./routes/activities");
 var app = express();
 app.set('port', (process.env.PORT) || 3000)
 
+// favicon
+var favicon = require('serve-favicon');
+app.use(favicon(__dirname + '/favicon.ico'));
+
 // view engine
 var viewEngine = require("ejs-locals");
 app.engine("ejs", viewEngine);
