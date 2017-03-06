@@ -92,9 +92,6 @@ router.post("/edit", (req, res, next) => {
     if (activity.Description) {
         changedActivity.Description = activity.Description;
     }
-    if (activity.CreationDate) {
-        changedActivity.CreationDate = activity.CreationDate;
-    }
 
     if (!changedActivity) {
         res.status(400);
@@ -102,7 +99,7 @@ router.post("/edit", (req, res, next) => {
     } else {
         db.activities.update(
             {_id: mongojs.ObjectId(activity._id)},
-            changedActivity, {}, (err,data) => {
+            {$set:changedActivity}, {}, (err,data) => {
                 if (err) {
                     res.send(err);
                 }
