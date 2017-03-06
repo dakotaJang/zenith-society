@@ -4,7 +4,8 @@
     <div class="row">
         <form method="post" action="/activities/create"  class="col-xs-6">
             <div class="form-group">
-                <input name="Description" placeholder="Description" class="form-control">
+                <% var value = ""; if(typeof(data) != "undefined"){ value = data.Description} %>
+                <input name="Description" placeholder="Description" class="form-control" value="<%= value %>" >
             </div>
             <input type="submit" value="Add" class="btn btn-success">
             <a href="/activities/list" class="btn btn-default">Cancel</a>

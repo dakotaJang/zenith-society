@@ -40,12 +40,23 @@ router.post("/create", (req, res, next) => {
             {error: "Bad data, could not insert in database"}
         );
     } else {
-        db.activities.save(activity, (err, data) => {
-            if (err) {
-                res.send(err)
-            }
-            res.redirect("/activities/list");
-        });
+        db.activities.findOne({Description:activity.Description},
+            function(err,data){
+                if(err){
+                    res.send(err);
+                }
+                if(data){
+                    // duplicate detected go back to form
+                    res.render("create", {title: "Add an activity",data:data});
+                }else{
+                    db.activities.save(activity, (err, data) => {
+                        if (err) {
+                            res.send(err)
+                        }
+                        res.redirect("/activities/list");
+                    });
+                }
+            });
     }
 });
 
